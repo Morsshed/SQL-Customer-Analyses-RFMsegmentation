@@ -4,12 +4,12 @@ Customer segmentation using SQL (RFM model) to identify loyal, at-risk, and chur
 ## Question-01: 
 ##### Analyse Customer Lifecycle Value (CLV) with regards to (RFM Model) Recency, Frequency and Monetary Value
 
-###### STEP-i:
+###### STEP-I:
         
                 SELECT  max(str_to_date(orderdate, '%d/%m/%y')) FROM SALES_DATA;  -- '2020-12-17' {Last Business Day}
                 SELECT  min(str_to_date(orderdate, '%d/%m/%y')) FROM SALES_DATA;  -- '2020-01-02' 
 
-###### STEP-ii:
+###### STEP-II:
                 SELECT 
                 	  CUSTOMERNAME,
                     ROUND(SUM(SALES),0) AS CLV,
