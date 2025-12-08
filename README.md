@@ -1,14 +1,15 @@
 #  Customer Analysis (RFM-Segmentation)
 Customer segmentation using SQL (RFM model) to identify loyal, at-risk, and churned customers.
 
-Question-01: Analyse Customer Lifecycle Value (CLV) with regards to (RFM Model) Recency, Frequency and Monetary Value
+## Question-01: 
+##### Analyse Customer Lifecycle Value (CLV) with regards to (RFM Model) Recency, Frequency and Monetary Value
 
-                                    STEP-01:
+###### STEP-i:
         
                 SELECT  max(str_to_date(orderdate, '%d/%m/%y')) FROM SALES_DATA;  -- '2020-12-17' {Last Business Day}
                 SELECT  min(str_to_date(orderdate, '%d/%m/%y')) FROM SALES_DATA;  -- '2020-01-02' 
 
-                                   STEP-02:
+###### STEP-ii:
                 SELECT 
                 	  CUSTOMERNAME,
                     ROUND(SUM(SALES),0) AS CLV,
@@ -19,9 +20,13 @@ Question-01: Analyse Customer Lifecycle Value (CLV) with regards to (RFM Model) 
                 FROM sales_data
                 GROUP BY CUSTOMERNAME;
 
-Question-02: Find out customerwise Recency, Frequency, Monetary and Total Purchase
+### Output:
+### SQL Skills Applied:
 
-                            STEP-01: Aggregation and CTEs
+## Question-02: 
+##### Find out customerwise Recency, Frequency, Monetary and Total Purchase
+
+###### STEP-I: Aggregation and CTEs
                               a. RFM with Aggregate Functions
                               b. with Common Table Expression CTE
 
@@ -36,9 +41,7 @@ Question-02: Find out customerwise Recency, Frequency, Monetary and Total Purcha
                 FROM sales_data
                 GROUP BY CUSTOMERNAME),
                 
-                          STEP-02: Window and CTEs
-                            a. Window Functions
-                            b. with Common Table Expression CTE
+###### STEP-II: Window and CTEs
                 
                 RFM_Score as(
                 SELECT 
@@ -49,8 +52,8 @@ Question-02: Find out customerwise Recency, Frequency, Monetary and Total Purcha
                     
                 FROM CLV),
 
-                          STEP-03: RFM Score
-                            a. Combination with Concat_ws
+###### STEP-III: RFM Score
+                           
                   
                 RFM_COMBINATION AS(
                 
@@ -75,10 +78,13 @@ Question-02: Find out customerwise Recency, Frequency, Monetary and Total Purcha
                         ELSE "Other"
                         END AS CUSTOMER_SEGMENT
                 FROM RFM_COMBINATION;
+### Output:
+### SQL Skills Applied:
 
-Question-03: Create a VIEW in the database for the RFM Model and find out Customer Segmentation
+## Question-03: 
+##### Create a VIEW in the database for the RFM Model and find out Customer Segmentation
 
-                              STEP-01: VIEW for RFM Model
+##### STEP-I: VIEW for RFM Model
                 
           CREATE VIEW RFM_ANALYSIS AS
           
@@ -123,7 +129,7 @@ Question-03: Create a VIEW in the database for the RFM Model and find out Custom
                 
                 SELECT * FROM RFM_ANALYSIS;
 
-                                STEP-02: customer segment wise spending, average spending, total order and total quantity
+###### STEP-II: 
                 SELECT 
 	                      CUSTOMER_SEGMENT,
 	                      SUM(MONETARY) AS TOTAL_SPENDING,
@@ -133,9 +139,11 @@ Question-03: Create a VIEW in the database for the RFM Model and find out Custom
                 FROM rfm_analysis
                       GROUP BY CUSTOMER_SEGMENT;
 
+### Output:
+### SQL Skills Applied:
 
-Question-04: Stored Procedure
-    
+## Question-04: 
+#### Stored Procedure
                     delimiter $$
                         create procedure Customer_LV( in customername varchar(50), out CLV int)
                             begin
@@ -149,7 +157,8 @@ Question-04: Stored Procedure
                     call Customer_LV ('Cruz & Sons Co.', @CLV);
                     select @CLV;
     
-
+### Output:
+### SQL Skills Applied:
 
 
 
