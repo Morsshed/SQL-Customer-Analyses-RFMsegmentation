@@ -22,13 +22,13 @@ Customer segmentation using SQL (RFM model) to identify loyal, at-risk, and chur
 
 ### Output:
 ### SQL Skills Applied:
+Aggregation Functions: SUM(SALES) for total monetary value (CLV). COUNT(DISTINCT ORDERNUMBER) for purchase frequency. SUM(QUANTITYORDERED) for total quantity purchased. Date Functions: STR_TO_DATE() converts string-formatted dates to proper DATE type. MAX() and MIN() identify last and first transaction dates. DATEDIFF() calculates recency (days since last purchase). Grouping: GROUP BY CUSTOMERNAME aggregates CLV, frequency, quantity, and recency per customer. RFM Metrics Foundation: Provides the base for further RFM analysis or customer segmentation.
 
 ## Question-02: 
 ##### Find out customerwise Recency, Frequency, Monetary and Total Purchase
 
 ###### STEP-I: Aggregation and CTEs
-                              a. RFM with Aggregate Functions
-                              b. with Common Table Expression CTE
+                          
 
                 WITH CLV AS(
                 SELECT 
@@ -80,6 +80,8 @@ Customer segmentation using SQL (RFM model) to identify loyal, at-risk, and chur
                 FROM RFM_COMBINATION;
 ### Output:
 ### SQL Skills Applied:
+
+Common Table Expressions (CTEs): CLV computes Recency, Frequency, Monetary, and total quantity per customer. RFM_Score calculates R, F, M scores using NTILE(5) OVER (...). RFM_COMBINATION concatenates RFM scores into a single code for segmentation. Window Functions: NTILE() divides metrics into quintiles for scoring. Aggregation Functions: COUNT(DISTINCT ORDERNUMBER) for frequency. SUM(SALES) for monetary value. SUM(QUANTITYORDERED) for total purchase quantity. MAX(ORDERDATE) for last purchase date. Date Functions: STR_TO_DATE() converts strings to dates; DATEDIFF() computes recency. Conditional Logic: CASE WHEN ... THEN ... classifies customers based on RFM combination. String Functions: CONCAT_WS() merges R, F, M scores into a single RFM code. Customer Segmentation: Creates actionable categories for marketing or CRM strategies.
 
 ## Question-03: 
 ##### Create a VIEW in the database for the RFM Model and find out Customer Segmentation
@@ -141,6 +143,8 @@ Customer segmentation using SQL (RFM model) to identify loyal, at-risk, and chur
 
 ### Output:
 ### SQL Skills Applied:
+Views: CREATE VIEW RFM_ANALYSIS AS allows reusable RFM analysis for all subsequent queries. Common Table Expressions (CTEs): CLV calculates Recency, Frequency, Monetary, and total quantity for each customer.
+RFM_Score assigns quantile-based R, F, and M scores using NTILE(5) OVER (...). RFM_COMBINATION concatenates the RFM scores to create an RFM code. Window Functions: NTILE() divides metrics into quintiles for scoring. Date Functions: STR_TO_DATE() converts string dates; DATEDIFF() calculates recency. Conditional Logic: CASE WHEN ... THEN ... classifies customers into segments based on RFM codes. Aggregation: SUM(MONETARY), AVG(MONETARY), SUM(FREQUENCY) summarize metrics per segment. Joins & Subqueries: The maximum order date is used for recency calculation (SELECT MAX(...) FROM SALES_DATA).
 
 ## Question-04: 
 #### Stored Procedure
@@ -160,6 +164,7 @@ Customer segmentation using SQL (RFM model) to identify loyal, at-risk, and chur
 ### Output:
 ### SQL Skills Applied:
 
+Stored Procedure Creation: Uses CREATE PROCEDURE to encapsulate logic for reusable execution. Input & Output Parameters: IN customername VARCHAR(50) accepts a customer name, OUT CLV INT returns the calculated value. Variable Assignment: SELECT ... INTO CLV stores the query result into the output parameter. Filtering: WHERE CUSTOMERNAME = 'Cruz & Sons Co.' filters the data for the specific customer. Calling Procedures: CALL Customer_LV('Cruz & Sons Co.', @CLV) executes the procedure. Using Session Variables: SELECT @CLV retrieves the output value. Rounding / Formatting: ROUND(SUM(SALES),0) ensures the result is an integer.
 
 
 
