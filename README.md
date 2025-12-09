@@ -21,6 +21,7 @@ Customer segmentation using SQL (RFM model) to identify loyal, at-risk, and chur
                 GROUP BY CUSTOMERNAME;
 
 ### Output:
+![RFM Analysis Results Screenshot](https://raw.githubusercontent.com/Morsshed/SQL-Customer-Analyses-RFMsegmentation/main/QueryImages/RFM%20Result%20SQL.png)
 ### SQL Skills Applied:
 Aggregation Functions: SUM(SALES) for total monetary value (CLV). COUNT(DISTINCT ORDERNUMBER) for purchase frequency. SUM(QUANTITYORDERED) for total quantity purchased. Date Functions: STR_TO_DATE() converts string-formatted dates to proper DATE type. MAX() and MIN() identify last and first transaction dates. DATEDIFF() calculates recency (days since last purchase). Grouping: GROUP BY CUSTOMERNAME aggregates CLV, frequency, quantity, and recency per customer. RFM Metrics Foundation: Provides the base for further RFM analysis or customer segmentation.
 
