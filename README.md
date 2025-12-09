@@ -165,6 +165,9 @@ RFM_Score assigns quantile-based R, F, and M scores using NTILE(5) OVER (...). R
                     select @CLV;
     
 ### Output:
+
+![Stored Procedure Screenshot](https://raw.githubusercontent.com/Morsshed/SQL-Customer-Analyses-RFMsegmentation/main/QueryImages/Stored%20Procedure.png)
+
 ### SQL Skills Applied:
 
 Stored Procedure Creation: Uses CREATE PROCEDURE to encapsulate logic for reusable execution. Input & Output Parameters: IN customername VARCHAR(50) accepts a customer name, OUT CLV INT returns the calculated value. Variable Assignment: SELECT ... INTO CLV stores the query result into the output parameter. Filtering: WHERE CUSTOMERNAME = 'Cruz & Sons Co.' filters the data for the specific customer. Calling Procedures: CALL Customer_LV('Cruz & Sons Co.', @CLV) executes the procedure. Using Session Variables: SELECT @CLV retrieves the output value. Rounding / Formatting: ROUND(SUM(SALES),0) ensures the result is an integer.
