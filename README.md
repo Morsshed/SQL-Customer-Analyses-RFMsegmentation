@@ -79,7 +79,6 @@ Aggregation Functions: SUM(SALES) for total monetary value (CLV). COUNT(DISTINCT
                         ELSE "Other"
                         END AS CUSTOMER_SEGMENT
                 FROM RFM_COMBINATION;
-### Output:
 ### SQL Skills Applied:
 
 Common Table Expressions (CTEs): CLV computes Recency, Frequency, Monetary, and total quantity per customer. RFM_Score calculates R, F, M scores using NTILE(5) OVER (...). RFM_COMBINATION concatenates RFM scores into a single code for segmentation. Window Functions: NTILE() divides metrics into quintiles for scoring. Aggregation Functions: COUNT(DISTINCT ORDERNUMBER) for frequency. SUM(SALES) for monetary value. SUM(QUANTITYORDERED) for total purchase quantity. MAX(ORDERDATE) for last purchase date. Date Functions: STR_TO_DATE() converts strings to dates; DATEDIFF() computes recency. Conditional Logic: CASE WHEN ... THEN ... classifies customers based on RFM combination. String Functions: CONCAT_WS() merges R, F, M scores into a single RFM code. Customer Segmentation: Creates actionable categories for marketing or CRM strategies.
@@ -143,6 +142,9 @@ Common Table Expressions (CTEs): CLV computes Recency, Frequency, Monetary, and 
                       GROUP BY CUSTOMER_SEGMENT;
 
 ### Output:
+
+![View SQL Output Screenshot](https://raw.githubusercontent.com/Morsshed/SQL-Customer-Analyses-RFMsegmentation/main/QueryImages/View%20SQL%20Output.png)
+
 ### SQL Skills Applied:
 Views: CREATE VIEW RFM_ANALYSIS AS allows reusable RFM analysis for all subsequent queries. Common Table Expressions (CTEs): CLV calculates Recency, Frequency, Monetary, and total quantity for each customer.
 RFM_Score assigns quantile-based R, F, and M scores using NTILE(5) OVER (...). RFM_COMBINATION concatenates the RFM scores to create an RFM code. Window Functions: NTILE() divides metrics into quintiles for scoring. Date Functions: STR_TO_DATE() converts string dates; DATEDIFF() calculates recency. Conditional Logic: CASE WHEN ... THEN ... classifies customers into segments based on RFM codes. Aggregation: SUM(MONETARY), AVG(MONETARY), SUM(FREQUENCY) summarize metrics per segment. Joins & Subqueries: The maximum order date is used for recency calculation (SELECT MAX(...) FROM SALES_DATA).
